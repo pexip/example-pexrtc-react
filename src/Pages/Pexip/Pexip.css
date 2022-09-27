@@ -1,0 +1,209 @@
+body {
+  background-color: #0a2136;
+  font-family: 'Inter';
+  color: #0a2136;
+
+  /* overflow: hidden; */
+}
+
+video {
+  background-color: #000;
+}
+
+button {
+  background: #0ebec7;
+  border-radius: 10px;
+  padding: 10px;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+
+  color: #0a2136;
+
+  border: none;
+  user-select: none;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: #0a2136;
+  color: #fff;
+}
+
+input {
+  border: 0;
+  background-color: #f2f4f6;
+  border-radius: 10px;
+  line-height: 50px;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+
+  padding-left: 10px;
+}
+
+.pageContainer {
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popupTop {
+  position: absolute;
+}
+
+.popupContainer {
+  background: #fefefe;
+  box-shadow: 0px 4px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  flex-basis: auto;
+}
+
+.popupTitle {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  margin-bottom: 20px;
+}
+
+.popupSeperator {
+  width: 100%;
+  border-bottom: 1px solid #edeff1;
+  margin-bottom: 10px;
+}
+
+.mediaSelection {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  user-select: none;
+}
+
+.mediaItem {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f2f4f6;
+  padding: 10px;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.mediaItem:hover {
+  background-color: #ccc;
+  cursor: pointer;
+}
+
+.mediaSubItem {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgba(210, 211, 211, 0.1);
+  padding: 10px;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 19px;
+}
+
+.mediaSubItem:hover {
+  background-color: #ccc;
+  cursor: pointer;
+}
+
+.mediaTop {
+  border-radius: 10px 10px 0px 0px;
+}
+
+.mediaBottom {
+  border-radius: 0px 0px 10px 10px;
+}
+
+.mediaIcon {
+  padding: 5px;
+}
+
+.mediaName {
+  padding: 5px;
+}
+
+.mediaCaret {
+  padding: 5px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+
+  margin: 20px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.popupInput {
+  margin: 10px 20px 10px 20px;
+}
+
+.popupInputTitle {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  margin-bottom: 10px;
+}
+
+.popupInputComment {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 18px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.popupCheckbox {
+  display: flex;
+  align-items: center;
+  margin: 10px 20px 10px 20px;
+}
+
+.popupCheckbox:hover {
+  cursor: pointer;
+  user-select: none;
+}
+
+.popupCheckboxBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #f2f4f6;
+  border-radius: 10px;
+  width: 32px;
+  height: 32px;
+  margin-right: 10px;
+}
+
+.popupCheckboxBoxChecked {
+  background-color: #0a2136;
+  width: 60%;
+  height: 60%;
+  border-radius: 5px;
+}
+
+.popupCheckboxText {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+}
