@@ -153,6 +153,7 @@ export default function PexipProvider({ children }) {
     pexRTC.pin = null;
     updatePinState('');
     updateCurrentPage('');
+    updateInPresentation(false);
   }
 
   const value = {
@@ -210,6 +211,7 @@ export default function PexipProvider({ children }) {
       updateCallState(false);
       updatePinState('');
       updateCurrentPage('');
+      updateInPresentation(false);
     }
 
     function callPresentation(setting, presenter, uuid) {
