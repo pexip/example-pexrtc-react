@@ -33,10 +33,10 @@ export default function MediaSetup() {
     let constraints = {
       video: {
         height: {
-          min: 1080,
+          min: 128,
         },
         width: {
-          min: 1920,
+          min: 128,
         },
       },
       audio: true,
