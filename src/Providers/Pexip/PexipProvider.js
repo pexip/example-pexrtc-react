@@ -140,6 +140,15 @@ export default function PexipProvider({ children }) {
   }
 
   function makeCall() {
+    pexRTC.vp8_enabled = false;
+    pexRTC.vp9_enabled = false;
+
+    pexRTC.muteAudio(state.muteMic);
+    pexRTC.muteVideo(state.muteVid);
+
+    pexRTC.video_source = state.selectedVideoDevice;
+    pexRTC.audio_source = state.selectedAudioDevice;
+
     pexRTC.makeCall('au.pexipdemo.com', state.meeting, state.participantName);
   }
 
