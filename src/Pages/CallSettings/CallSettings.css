@@ -1,0 +1,22 @@
+.callSettingsButton {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #fff;
+  width: 64px;
+  height: 64px;
+  border-radius: 64px;
+
+  font-size: 24px;
+  margin: 10px;
+}
+
+.callSettingsButton:hover {
+  background-color: #eee;
+  cursor: pointer;
+}

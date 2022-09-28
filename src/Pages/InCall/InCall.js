@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { usePexip } from '../../Providers/Pexip/PexipProvider';
+import CallSettings from '../CallSettings/CallSettings';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -72,6 +73,7 @@ export default function InCall() {
 
   return (
     <>
+      <CallSettings />
       <div className='inCallContainer'>
         <div
           className={`videoContainer ${inPresentation ? 'inPresentation' : ''}`}

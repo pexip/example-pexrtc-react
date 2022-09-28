@@ -56,6 +56,16 @@ input {
   justify-content: center;
 }
 
+.popupBackdrop {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+
+  background-color: rgba(0, 0, 0, 0.5);
+
+  z-index: 10;
+}
+
 .popupTop {
   position: absolute;
 }
@@ -70,6 +80,8 @@ input {
   display: flex;
   flex-direction: column;
   flex-basis: auto;
+
+  z-index: 20;
 }
 
 .popupTitle {
