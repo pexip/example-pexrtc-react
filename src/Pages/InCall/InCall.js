@@ -10,6 +10,8 @@ import {
   faVideo,
   faVolumeHigh,
   faVolumeMute,
+  faHashtag,
+  faShareNodes,
 } from '@fortawesome/free-solid-svg-icons';
 
 import './InCall.css';
@@ -84,18 +86,24 @@ export default function InCall() {
         </div>
         <div className='callControlsContainer'>
           <div className='callControls'>
-            <div className='callControl ' onClick={() => toggleSpeakerMute()}>
-              <FontAwesomeIcon
-                icon={muteSpeaker ? faVolumeMute : faVolumeHigh}
-              />
-            </div>
-            <div className='callControl ' onClick={() => toggleMicMute()}>
+            <div className='callControl' onClick={() => toggleMicMute()}>
               <FontAwesomeIcon
                 icon={muteMic ? faMicrophoneSlash : faMicrophone}
               />
             </div>
-            <div className='callControl ' onClick={() => toggleVidMute()}>
+            <div className='callControl' onClick={() => toggleVidMute()}>
               <FontAwesomeIcon icon={muteVid ? faVideoSlash : faVideo} />
+            </div>
+            <div className='callControl'>
+              <FontAwesomeIcon icon={faShareNodes} />
+            </div>
+            <div className='callControl'>
+              <FontAwesomeIcon icon={faHashtag} />
+            </div>
+            <div className='callControl' onClick={() => toggleSpeakerMute()}>
+              <FontAwesomeIcon
+                icon={muteSpeaker ? faVolumeMute : faVolumeHigh}
+              />
             </div>
             <div
               className='callControl disconnectCall'
