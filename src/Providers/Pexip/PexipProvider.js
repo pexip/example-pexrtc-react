@@ -234,7 +234,7 @@ export default function PexipProvider({ children }) {
     }
 
     function callPresentation(setting, presenter, uuid) {
-      console.log('callPresentation', setting);
+      updatePresentationURL('');
       updateInPresentation(setting);
     }
 

@@ -71,7 +71,7 @@ export default function InCall() {
           className='presentationWindow'
           style={{ display: inPresentation ? 'flex' : 'none' }}
         >
-          <img src={presentationURL} />
+          <img src={presentationURL} alt='' />
         </div>
         <div className='callControlsContainer'>
           <div className='callControls'>
