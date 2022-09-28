@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { usePexip } from '../../Providers/Pexip/PexipProvider';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,11 +8,15 @@ import {
   faMicrophone,
   faVideoSlash,
   faVideo,
+  faVolumeHigh,
+  faVolumeMute,
 } from '@fortawesome/free-solid-svg-icons';
 
 import './InCall.css';
 
 export default function InCall() {
+  const [muteSpeaker, setSpeakerMute] = useState(false);
+
   const farEndVideo = useRef(null);
   const nearEndVideo = useRef(null);
   const {
@@ -26,6 +30,11 @@ export default function InCall() {
     inPresentation,
     presentationURL,
   } = usePexip();
+
+  function toggleSpeakerMute() {
+    farEndVideo.current.muted = !muteSpeaker;
+    setSpeakerMute(!muteSpeaker);
+  }
 
   useEffect(() => {
     if (farEndStream != null) {
@@ -75,6 +84,11 @@ export default function InCall() {
         </div>
         <div className='callControlsContainer'>
           <div className='callControls'>
+            <div className='callControl ' onClick={() => toggleSpeakerMute()}>
+              <FontAwesomeIcon
+                icon={muteSpeaker ? faVolumeMute : faVolumeHigh}
+              />
+            </div>
             <div className='callControl ' onClick={() => toggleMicMute()}>
               <FontAwesomeIcon
                 icon={muteMic ? faMicrophoneSlash : faMicrophone}
