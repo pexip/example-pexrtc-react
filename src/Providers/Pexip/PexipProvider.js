@@ -223,6 +223,16 @@ export default function PexipProvider({ children }) {
       updateInPresentation(false);
     }
 
+    function callError(error) {
+      pexRTC.pin = null;
+      updateCallState(false);
+      updatePinState('');
+      updateCurrentPage('MEETING_DETAILS');
+      updateInPresentation(false);
+
+      alert(error);
+    }
+
     function callPresentation(setting, presenter, uuid) {
       console.log('callPresentation', setting);
       updateInPresentation(setting);
@@ -232,13 +242,13 @@ export default function PexipProvider({ children }) {
       updatePresentationURL(url);
     }
 
-    // Linke the callSetup method to the onSetup callback
+    // Link the callSetup method to the onSetup callback
     pexRTC.onSetup = callSetup;
-    // Linke the callConnected method to the onConnect callback
+    // Link the callConnected method to the onConnect callback
     pexRTC.onConnect = callConnected;
-    // Linke the callDisconnected method to the onError callback
-    pexRTC.onError = callDisconnected;
-    // Linke the callDisconnected method to the onDisconnect callback
+    // Link the callError method to the onError callback
+    pexRTC.onError = callError;
+    // Link the callDisconnected method to the onDisconnect callback
     pexRTC.onDisconnect = callDisconnected;
 
     pexRTC.onPresentation = callPresentation;
