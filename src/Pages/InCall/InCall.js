@@ -102,9 +102,7 @@ export default function InCall() {
       <div className='inCallContainer'>
         <div
           className={`videoContainer ${
-            inRemotePresentation || inLocalPresentation
-              ? 'inRemotePresentation'
-              : ''
+            inRemotePresentation || inLocalPresentation ? 'inPresentation' : ''
           }`}
         >
           <video ref={farEndVideo} autoPlay='autoplay'></video>
