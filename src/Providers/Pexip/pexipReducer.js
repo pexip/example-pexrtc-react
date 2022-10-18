@@ -55,10 +55,13 @@ export default function pexipReducer(state, action) {
       newState.selectedVideoDevice = payload.selectedVideoDevice;
       break;
     case 'UPDATE_IN_PRESENTATION':
-      newState.inPresentation = payload.inPresentation;
+      newState.inRemotePresentation = payload.inRemotePresentation;
       break;
-    case 'UPDATE_PRESENTATION_URL':
-      newState.presentationURL = payload.presentationURL;
+    case 'UPDATE_PRESENTATION_SOURCE':
+      newState.presentationSource = payload.presentationSource;
+      break;
+    case 'UPDATE_PRESENTING_LOCALLY':
+      newState.inLocalPresentation = payload.inLocalPresentation;
       break;
     default:
       throw new Error(`No case for type ${type} found in pexipReducer.`);

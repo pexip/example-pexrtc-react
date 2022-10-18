@@ -24,6 +24,8 @@ export default function InCall() {
 
   const farEndVideo = useRef(null);
   const nearEndVideo = useRef(null);
+  const localPresentationVideo = useRef(null);
+
   const {
     farEndStream,
     nearEndStream,
@@ -32,8 +34,10 @@ export default function InCall() {
     muteMic,
     toggleVidMute,
     muteVid,
-    inPresentation,
-    presentationURL,
+    inRemotePresentation,
+    presentationSource,
+    toggleLocalPresentation,
+    inLocalPresentation,
   } = usePexip();
 
   function toggleSpeakerMute() {
@@ -77,20 +81,50 @@ export default function InCall() {
     }
   }, [nearEndStream]);
 
+  useEffect(() => {
+    if (inLocalPresentation) {
+      if (
+        typeof MediaStream !== 'undefined' &&
+        presentationSource instanceof MediaStream
+      ) {
+        // Set the source object to the stream source
+        localPresentationVideo.current.srcObject = presentationSource;
+      } else {
+        // It's not a Media Stream so we assume it is just a regular source and apply it
+        localPresentationVideo.current.src = presentationSource;
+      }
+    }
+  }, [inLocalPresentation]);
+
   return (
     <>
       <CallSettings />
       <div className='inCallContainer'>
         <div
-          className={`videoContainer ${inPresentation ? 'inPresentation' : ''}`}
+          className={`videoContainer ${
+            inRemotePresentation || inLocalPresentation
+              ? 'inRemotePresentation'
+              : ''
+          }`}
         >
           <video ref={farEndVideo} autoPlay='autoplay'></video>
         </div>
         <div
           className='presentationWindow'
-          style={{ display: inPresentation ? 'flex' : 'none' }}
+          style={{
+            display:
+              inRemotePresentation || inLocalPresentation ? 'flex' : 'none',
+          }}
         >
-          <img src={presentationURL} alt='' />
+          {inLocalPresentation ? (
+            <video
+              ref={localPresentationVideo}
+              muted
+              autoPlay='autoplay'
+            ></video>
+          ) : (
+            <img src={presentationSource} alt='' />
+          )}
         </div>
         <div className='callControlsContainer'>
           <div className='callControls'>
@@ -102,7 +136,10 @@ export default function InCall() {
             <div className='callControl' onClick={() => toggleVidMute()}>
               <FontAwesomeIcon icon={muteVid ? faVideoSlash : faVideo} />
             </div>
-            <div className='callControl'>
+            <div
+              className='callControl'
+              onClick={() => toggleLocalPresentation()}
+            >
               <FontAwesomeIcon icon={faShareNodes} />
             </div>
             <div className='callControl' onClick={() => toggleDTMF()}>

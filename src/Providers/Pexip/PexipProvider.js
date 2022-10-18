@@ -121,20 +121,29 @@ export default function PexipProvider({ children }) {
     });
   }
 
-  function updateInPresentation(inPresentation) {
+  function updateinRemotePresentation(inRemotePresentation) {
     dispatch({
       type: 'UPDATE_IN_PRESENTATION',
       payload: {
-        inPresentation: inPresentation,
+        inRemotePresentation: inRemotePresentation,
       },
     });
   }
 
-  function updatePresentationURL(presentationURL) {
+  function updatePresentationSource(presentationSource) {
     dispatch({
-      type: 'UPDATE_PRESENTATION_URL',
+      type: 'UPDATE_PRESENTATION_SOURCE',
       payload: {
-        presentationURL: presentationURL,
+        presentationSource: presentationSource,
+      },
+    });
+  }
+
+  function updateinLocalPresentation(inLocalPresentation) {
+    dispatch({
+      type: 'UPDATE_PRESENTING_LOCALLY',
+      payload: {
+        inLocalPresentation: inLocalPresentation,
       },
     });
   }
@@ -162,11 +171,19 @@ export default function PexipProvider({ children }) {
     pexRTC.pin = null;
     updatePinState('');
     updateCurrentPage('');
-    updateInPresentation(false);
+    updateinRemotePresentation(false);
   }
 
   function sendDTMF(dtmf) {
     pexRTC.sendDTMF(dtmf);
+  }
+
+  function toggleLocalPresentation() {
+    if (!state.inLocalPresentation) {
+      pexRTC.present('screen');
+    } else {
+      pexRTC.present(null);
+    }
   }
 
   const value = {
@@ -177,8 +194,9 @@ export default function PexipProvider({ children }) {
     muteVid: state.muteVid,
     pinState: state.pinState,
     callState: state.callState,
-    inPresentation: state.inPresentation,
-    presentationURL: state.presentationURL,
+    inRemotePresentation: state.inRemotePresentation,
+    presentationSource: state.presentationSource,
+    inLocalPresentation: state.inLocalPresentation,
 
     farEndStream: state.farEndStream,
     nearEndStream: state.nearEndStream,
@@ -197,6 +215,7 @@ export default function PexipProvider({ children }) {
     enterPin,
     disconnectCall,
     sendDTMF,
+    toggleLocalPresentation,
   };
 
   useEffect(() => {
@@ -225,7 +244,7 @@ export default function PexipProvider({ children }) {
       updateCallState(false);
       updatePinState('');
       updateCurrentPage('');
-      updateInPresentation(false);
+      updateinRemotePresentation(false);
     }
 
     function callError(error) {
@@ -233,18 +252,37 @@ export default function PexipProvider({ children }) {
       updateCallState(false);
       updatePinState('');
       updateCurrentPage('MEETING_DETAILS');
-      updateInPresentation(false);
+      updateinRemotePresentation(false);
 
       alert(error);
     }
 
     function callPresentation(setting, presenter, uuid) {
-      updatePresentationURL('');
-      updateInPresentation(setting);
+      updatePresentationSource('');
+      updateinRemotePresentation(setting);
+
+      // If someone starts presenting, track no loger presenting locally.
+      if (setting === true) {
+        updateinLocalPresentation(false);
+      }
     }
 
     function callPresentationReload(url) {
-      updatePresentationURL(url);
+      if (!state.inLocalPresentation) {
+        updatePresentationSource(url);
+      }
+    }
+
+    function screenshareConnected(stream) {
+      updateinRemotePresentation(true);
+      updateinLocalPresentation(true);
+      updatePresentationSource(stream);
+    }
+
+    function screenshareStopped(reason) {
+      updateinRemotePresentation(false);
+      updateinLocalPresentation(false);
+      updatePresentationSource('');
     }
 
     // Link the callSetup method to the onSetup callback
@@ -258,6 +296,9 @@ export default function PexipProvider({ children }) {
 
     pexRTC.onPresentation = callPresentation;
     pexRTC.onPresentationReload = callPresentationReload;
+
+    pexRTC.onScreenshareConnected = screenshareConnected;
+    pexRTC.onScreenshareStopped = screenshareStopped;
   }, []);
 
   return (

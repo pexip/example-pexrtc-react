@@ -17,7 +17,7 @@
   max-width: 100vw;
 }
 
-.inPresentation video {
+.inRemotePresentation video {
   height: 20vh;
 }
 
@@ -31,6 +31,11 @@
 }
 
 .presentationWindow img {
+  height: 100%;
+  max-width: 100vw;
+}
+
+.presentationWindow video {
   height: 100%;
   max-width: 100vw;
 }
