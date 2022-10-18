@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 import Pexip from './Pages/Pexip/Pexip';
-import PexipProvider, { usePexip } from './Providers/Pexip/PexipProvider';
+import PexipProvider from './Providers/Pexip/PexipProvider';
 
 import './index.css';
 

@@ -15,7 +15,6 @@ export default function MeetingDetails() {
     toggleVidMute,
 
     makeCall,
-    disconnectCall,
   } = usePexip();
 
   function nextPage() {

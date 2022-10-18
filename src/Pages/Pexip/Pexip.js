@@ -17,7 +17,7 @@ function OutsideCall() {
         switch (currentPage) {
           case 'MEETING_DETAILS':
             return <MeetingDetails />;
-          case 'IN_CALL' /* && callState === true*/:
+          case 'IN_CALL':
             return <InCall />;
           default:
             return <MediaSetup />;
