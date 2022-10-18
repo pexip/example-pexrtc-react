@@ -165,6 +165,10 @@ export default function PexipProvider({ children }) {
     updateInPresentation(false);
   }
 
+  function sendDTMF(dtmf) {
+    pexRTC.sendDTMF(dtmf);
+  }
+
   const value = {
     currentPage: state.currentPage,
     participantName: state.participantName,
@@ -192,6 +196,7 @@ export default function PexipProvider({ children }) {
     makeCall,
     enterPin,
     disconnectCall,
+    sendDTMF,
   };
 
   useEffect(() => {

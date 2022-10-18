@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { usePexip } from '../../Providers/Pexip/PexipProvider';
 import CallSettings from '../CallSettings/CallSettings';
+import DTMF from '../../Components/DTMF/DTMF';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -19,6 +20,7 @@ import './InCall.css';
 
 export default function InCall() {
   const [muteSpeaker, setSpeakerMute] = useState(false);
+  const [showDTMF, setDTMF] = useState(false);
 
   const farEndVideo = useRef(null);
   const nearEndVideo = useRef(null);
@@ -37,6 +39,10 @@ export default function InCall() {
   function toggleSpeakerMute() {
     farEndVideo.current.muted = !muteSpeaker;
     setSpeakerMute(!muteSpeaker);
+  }
+
+  function toggleDTMF() {
+    setDTMF(!showDTMF);
   }
 
   useEffect(() => {
@@ -99,8 +105,9 @@ export default function InCall() {
             <div className='callControl'>
               <FontAwesomeIcon icon={faShareNodes} />
             </div>
-            <div className='callControl'>
+            <div className='callControl' onClick={() => toggleDTMF()}>
               <FontAwesomeIcon icon={faHashtag} />
+              {showDTMF ? <DTMF /> : ''}
             </div>
             <div className='callControl' onClick={() => toggleSpeakerMute()}>
               <FontAwesomeIcon

@@ -1,0 +1,47 @@
+.dtmfContainer {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+
+  bottom: 80px;
+
+  width: 200px;
+}
+
+.dtmfBackground {
+  display: flex;
+  flex-direction: row;
+
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  height: 90%;
+  padding: 10px;
+  background-color: #fff;
+
+  border-radius: 5%;
+}
+
+.dtmfButton {
+  padding: 5px;
+  flex-grow: 1;
+  width: 20%;
+}
+
+.dtmfButton button {
+  width: 50px;
+}
+
+.dtmfTail {
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+
+  border-top: 20px solid #fff;
+}
